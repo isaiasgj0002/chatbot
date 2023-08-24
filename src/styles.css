@@ -4,3 +4,10 @@
 body {
     font-family: var(--font-family);
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Esto establece el 100% de la altura de la ventana */
+}
