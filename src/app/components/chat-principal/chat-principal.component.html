@@ -1,14 +1,19 @@
 <div class="container">
     <p-card header="ChatBot" subheader="Bienvenido a nuestro chatbot" [style]="{ width: '360px' }">
         <ng-template pTemplate="header">
-            
+
         </ng-template>
-        <p>
-            
-        </p>
-        <input type="text" placeholder="Mensaje" pInputText/>
+        <div>
+          <p>Tu: {{ message }}</p>
+          <p>Respuesta del chatbot:</p>
+          <p *ngIf="response==''">Bienvenido, te saluda el asistente virtual de las pollas de roly quispe,
+            en que puedo ayudarte?
+          </p>
+          <p *ngIf="response!=''">{{ response }}</p>
+        </div>
+        <input [(ngModel)]="message" type="text" placeholder="Mensaje" pInputText />
         <ng-template pTemplate="footer">
-            <p-button label="Enviar mensaje" icon="pi pi-check"></p-button>
+            <p-button (click)="sendMessage()" label="Enviar mensaje" icon="pi pi-check"></p-button>
         </ng-template>
     </p-card>
 </div>

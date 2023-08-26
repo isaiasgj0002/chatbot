@@ -8,6 +8,9 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarModule } from 'primeng/sidebar';
+import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { HttpClientModule } from '@angular/common/http'; // Importa HttpClientModule
+
 
 
 
@@ -23,11 +26,13 @@ import { SidebarModule } from 'primeng/sidebar';
     ButtonModule,
     CardModule,
     InputTextModule,
-    SidebarModule
+    SidebarModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
   sidebarVisible = false;
 }

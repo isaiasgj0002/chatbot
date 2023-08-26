@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import { ChatbotService } from 'src/app/services/chatbot.services';
 
 
 @Component({
@@ -9,5 +10,19 @@ import { ButtonModule } from 'primeng/button';
   styleUrls: ['./chat-principal.component.css']
 })
 export class ChatPrincipalComponent {
+  message: string = '';
+  response: string = '';
 
+  constructor(private chatbotService: ChatbotService) {}
+
+  sendMessage() {
+    this.chatbotService.chatWithBot(this.message)
+    .subscribe(chatResponse => {
+      this.response = chatResponse.response;
+      this.message == '';
+    },
+    error => {
+      console.log(error);
+    });
+    }
 }
