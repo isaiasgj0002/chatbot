@@ -4,9 +4,9 @@
 
         </ng-template>
         <div>
-          <p>Tu: {{ message }}</p>
+          <p *ngIf="message">Tu: {{ message }}</p>
           <p>Respuesta del chatbot:</p>
-          <p *ngIf="response==''">Bienvenido, te saluda el asistente virtual de las pollas de roly quispe,
+          <p *ngIf="response==''">Bienvenido, te saluda el asistente virtual de 2Plo Technologies,
             en que puedo ayudarte?
           </p>
           <p *ngIf="response!=''">{{ response }}</p>
