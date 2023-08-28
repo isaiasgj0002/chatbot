@@ -3,6 +3,10 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { ChatbotService } from 'src/app/services/chatbot.services';
 
+interface ChatMessage {
+  text: string;
+  isUser: boolean;
+}
 
 @Component({
   selector: 'app-chat-principal',
@@ -10,19 +14,27 @@ import { ChatbotService } from 'src/app/services/chatbot.services';
   styleUrls: ['./chat-principal.component.css']
 })
 export class ChatPrincipalComponent {
+  messages: ChatMessage[] = [];
   message: string = '';
   response: string = '';
 
   constructor(private chatbotService: ChatbotService) {}
 
   sendMessage() {
-    this.chatbotService.chatWithBot(this.message)
-    .subscribe(chatResponse => {
-      this.response = chatResponse.response;
-      this.message == '';
-    },
-    error => {
-      console.log(error);
-    });
+    if (this.message.trim() === '') {
+      return;
+    }
+
+    this.messages.push({ text: this.message, isUser: true });
+
+    this.chatbotService.chatWithBot(this.message).subscribe(
+      chatResponse => {
+        this.messages.push({ text: chatResponse.response, isUser: false });
+        this.message = ''; // Limpiar el contenido de la caja de texto
+      },
+      error => {
+        console.log(error);
+      }
+    );
     }
 }

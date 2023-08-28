@@ -1,19 +1,15 @@
-<div class="container">
-    <p-card header="ChatBot" subheader="Bienvenido a nuestro chatbot" [style]="{ width: '360px' }">
-        <ng-template pTemplate="header">
-
-        </ng-template>
-        <div>
-          <p *ngIf="message">Tu: {{ message }}</p>
-          <p>Respuesta del chatbot:</p>
-          <p *ngIf="response==''">Bienvenido, te saluda el asistente virtual de 2Plo Technologies,
-            en que puedo ayudarte?
-          </p>
-          <p *ngIf="response!=''">{{ response }}</p>
-        </div>
-        <input [(ngModel)]="message" type="text" placeholder="Mensaje" pInputText />
-        <ng-template pTemplate="footer">
-            <p-button (click)="sendMessage()" label="Enviar mensaje" icon="pi pi-check"></p-button>
-        </ng-template>
-    </p-card>
+<div class="container" style="height: 100%!important;">
+  <p-card header="ChatBot" subheader="Bienvenido a nuestro chatbot" [style]="{ width: '360px' }">
+    <ng-template pTemplate="header"></ng-template>
+    <div>
+      <ng-container *ngFor="let msg of messages">
+        <p *ngIf="msg.isUser">Tu: {{ msg.text }}</p>
+        <p *ngIf="!msg.isUser">Respuesta del chatbot: {{ msg.text }}</p>
+      </ng-container>
+    </div>
+    <input [(ngModel)]="message" type="text" placeholder="Mensaje" pInputText />
+    <ng-template pTemplate="footer">
+      <p-button (click)="sendMessage()" label="Enviar mensaje" icon="pi pi-check"></p-button>
+    </ng-template>
+  </p-card>
 </div>
